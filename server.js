@@ -41,10 +41,11 @@ app.post('/', (req, res) => {
                 else {
                     iconUrl = `wi wi-owm-night-${weather.weather[0].id}`;
                 }
+                let weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
                 weather.weather[0].description = weather.weather[0].description.toUpperCase();
                 weather.sys.country = weather.sys.country.toLowerCase();
 
-                res.render('index', { weatherData: weather, iconUrl, error: null });
+                res.render('index', {weather: weatherText, weatherData: weather, iconUrl, error: null });
             }
         }
     });
