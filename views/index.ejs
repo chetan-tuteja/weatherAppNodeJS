@@ -106,9 +106,9 @@
                             <div class="ui two buttons">
                                 <button class="ui primary button  bottom-bar" style="margin-right: 2px;" onclick="toggleTemp()">Toggle
                                     Temperature</button>
-                                <form method="get" style="margin: 0; padding: 0; width: 100%;" action="//localhost:3000">
+                                
 
-                                    <button class="ui button bottom-bar" style="margin-left: 2px;">Reset Weather</button>
+                                    <button class="ui button bottom-bar" style="margin-left: 2px;" onclick = "reset()" >Reset Weather</button>
                                 </form>
                             </div>
                         </div>
@@ -152,7 +152,6 @@
         }
 
         function reset() {
-           
             window.parent.location = window.parent.location.href;
             console.log("pressed ")
         }
