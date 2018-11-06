@@ -2,10 +2,15 @@
   "name": "simplenodejs-weatherapp",
   "version": "1.0.0",
   "description": "A Simple WeatherApp using NodeJS",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  
+  "engines": {
+    "node": "10.13.0"
+  },
+  
   "author": "Chetan Tuteja",
   "license": "ISC",
   "dependencies": {
