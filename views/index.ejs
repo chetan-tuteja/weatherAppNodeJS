@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|VT323" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <title>WeatherApp</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/weather-icons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="container">
+        <fieldset>
+            <form action="/" method="post">
+                <div class="ui input centered massive">
+                    <input name="city" type="text" class=" ui centered " placeholder="Enter a City" required>
+                    <input name="city" type="submit" style="padding-left: 100px; padding-right: 100px; background: white;"
+                        class="   button ui centered " value="Get Weather!">
+                </div>
+                <hr>
+
+            </form>
+            <% if(weather !== null){ %>
+            <div class="ui cards">
+                <div class="card ui centered">
+                    <div class="content" style=" margin-top: 20px;">
+                        <i class=" right floated mini  " style="font-size: 20px; margin-top: 80px; padding-right: 40px;"
+                            width="200px">&nbsp;</i>
+
+                        <i class="<%=iconUrl%> right floated mini ui image " style="font-size: 60px;" width="150px"></i>
+
+
+                        <div class="header">
+                            <h4>Weather for </h4>
+                            <h1>
+                                <%= weatherData.name%>
+                            </h1>
+                        </div>
+                        <div class="meta">
+                            <h5 class="text-right">City in
+                                <span style="text-transform: uppercase">
+                                    <%= weatherData.sys.country %></span>
+
+                                <i class="<%= weatherData.sys.country %> flag"></i>
+                            </h5>
+
+
+
+
+                            <div class="description  ">
+
+                                <p style="display: inline;" class=""> <span class="ui blue label">
+                                        <%= weatherData.weather[0].main%></span>
+                                    <h5 style="display: inline;" class="">
+                                        <%= weatherData.weather[0].description%>
+                                    </h5>
+                                </p>
+
+
+                            </div>
+
+                            <table>
+                                <tr>
+                                    <td><span class="boldtext">Temperature</span></td>
+                                    <td><span id="temperature" class="weatherResults">
+                                            <%= weatherData.main.temp %></span><span id="units" class="weatherResults">°
+                                            F</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td><span class="boldtext">Pressure</span></td>
+                                    <td>
+                                        <span class="weatherResults">
+                                            <%= weatherData.main.pressure%> hPa</span>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><span class="boldtext">Humidity</span></td>
+                                    <td>
+                                        <span class="weatherResults">
+                                            <%= weatherData.main.humidity%>%</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><span class="boldtext">Wind</span></td>
+                                    <td>
+                                        <span class="weatherResults">
+                                            <%= weatherData.wind.speed%> m/s</span>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+                        </div>
+                        <div class="extra content">
+                            <div class="ui two buttons">
+                                <button class="ui primary button  bottom-bar" style="margin-right: 2px;" onclick="toggleTemp()">Toggle
+                                    Temperature</button>
+                                <form method="get" style="margin: 0; padding: 0; width: 100%;" action="//localhost:3000">
+
+                                    <button class="ui button bottom-bar" style="margin-left: 2px;">Reset Weather</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <% } %>
+        </fieldset>
+    </div>
+    <center>
+        <div class="footer">
+            <p>Made with ♥ by Chetan</p>
+        </div>
+    </center>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    <script>
+        var temperatureUnit = 'F'
+        const tempElement = document.getElementById("temperature")
+        var value = document.getElementById("temperature")
+        var oldValue = value.innerHTML;
+        function toggleTemp() {
+            document.getElementById("units").innerHTML = ''
+            let value = tempElement;
+            if (temperatureUnit == 'F') {
+                value.innerHTML = Math.round((parseInt(value.innerHTML) - 32) * 5 / 9) + " ° C"
+                console.log(document.getElementById("temperature").innerHTML)
+                temperatureUnit = 'C'
+            }
+            else {
+                value.innerHTML = oldValue + " ° F"
+                temperatureUnit = 'F'
+            }
+        }
+
+        function reset() {
+            window.location.href = 'localhost:3000'
+            console.log("pressed ")
+        }
+    </script>
+</body>
+
+</html>
