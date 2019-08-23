@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 
 
-const apiKey = "812d7c7e3a5d6fe618a0495036f8ced9";
+const apiKey = "INSERT_API_KEY_HERE";
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
